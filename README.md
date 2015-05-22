@@ -8,6 +8,8 @@
 [路由设置](https://github.com/guoxf/MyMovie/blob/master/routers/router.go)
 ## Moedels
 [MovieModel](https://github.com/guoxf/MyMovie/blob/master/models/MovieModels.go)
+## 其他
+[scheduler_redis](https://github.com/guoxf/MyMovie/blob/master/modules/myspider/scheduler_redis.go)
 ## views
 [首页](https://github.com/guoxf/MyMovie/blob/master/views/index.html)<br>
 [分类](https://github.com/guoxf/MyMovie/blob/master/views/movie/category.html)<br>
