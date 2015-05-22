@@ -1,0 +1,43 @@
+{{template "base/base.html" .}}
+{{template "base/base_common.html" .}}
+{{define "meta"}}
+<title>{{i18n .Lang "app_name"}} - {{i18n .Lang "app_intro"}}</title>
+<meta name="description" content="{{i18n .Lang "app_desc"}}" />
+<meta name="keywords" content="{{i18n .Lang "app_keywords"}}">
+{{end}}
+{{define "body"}}
+<div class="zu-main-content-inner">
+	<div class="zu-main-feed-con navigable">
+	{{$appUrl:=.AppUrl}}
+		{{range .Movies}}
+		<div class="feed-item">
+			<div class="feed-item-inner">
+				<div class="avatar">
+					<a class="zm-item-link-avatar" href="{{$appUrl}}movie/{{.MovieId}}.html" data-original_title="创业">
+						<img src="/static/img/movie_icon.jpg" alt="电影" class="side-topic-avatar"></a>
+				</div>
+				<div class="feed-main">
+					<div class="source"></div>
+					<div class="content">
+						<h2>
+							<a class="question_link" target="_blank" href="{{$appUrl}}movie/{{.MovieId}}.html">{{.MovieTitle}}</a>
+						</h2>
+						<div class="entry-body">
+
+							<div class="zm-item-answer-detail">
+								<div class="zm-item-rich-text" data-resourceid="4134933" data-action="/answer/content">
+
+									<div class="zh-summary summary clearfix">{{.MovieSummary}}</div>
+
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		{{end}}
+		<div class="cell last">{{template "base/paginator.html" .}}</div>
+	</div>
+</div>
+{{end}}

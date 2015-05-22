@@ -1,0 +1,121 @@
+{{template "base/base.html" .}}
+{{template "base/base_common.html" .}}
+{{define "meta"}}
+<title>{{i18n .Lang "app_name"}} - {{i18n .Lang "app_intro"}}</title>
+<meta name="description" content="{{i18n .Lang "app_desc"}}" />
+<meta name="keywords" content="{{i18n .Lang "app_keywords"}}">
+{{end}}
+{{define "body"}}
+<style type="text/css">
+  ul li, .xl li {
+  list-style: none;
+}
+ol, ul {
+  list-style: none;
+}
+address, caption, cite, code, dfn, em, strong, th, var {
+  font-style: normal;
+  font-weight: normal;
+}
+body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, input, textarea, p, blockquote, th, td {
+  margin: 0;
+  padding: 0;
+}
+</style>
+<div class="main">
+  <div class="left box">
+    <ul class="news">
+      {{$appUrl:=.AppUrl}}
+  {{$lang:=.Lang}}
+  {{range .Movies}}
+      <li>
+        <h2>
+          <a href="movie/{{.MovieId}}.html" target="_blank" title="{{.MovieTitle}}">{{.MovieTitle}}</a>
+        </h2>
+        <a href="{{$appUrl}}category/{{.MovieType}}" target="_blank" title="{{.MovieTitle}}">{{i18n $lang .MovieType}}</a>
+        |  {{.Updated}}
+    {{if .MovieImgSrc}}
+        <a href="movie/{{.MovieId}}.html" target="_blank" title="{{.MovieTitle}}">
+          <img src="{{.MovieImgSrc}}" width="auto" height="auto" alt="{{.MovieTitle}}"></a>
+          {{else}}
+          <a href="movie/{{.MovieId}}.html" target="_blank" title="{{.MovieTitle}}">
+          <img src="{{.Cover}}" width="auto" height="auto" alt="{{.MovieTitle}}"></a>
+        {{end}}
+        <p>
+          {{.MovieSummary}}
+          <a href="movie/{{.MovieId}}.html" target="_blank" title="{{.MovieTitle}}">全文》</a>
+        </p>
+      </li>
+      {{end}}
+    </ul>
+  </div>
+  <div class="right">
+    <div id="portal_block_163" class="block move-span">
+      <div id="portal_block_163_content" class="dxb_bc">
+        <div class="editorChoice box">
+          <h4> <strong>{{i18n .Lang "movie"}}</strong>
+
+          </h4>
+          <ul>
+            {{range $index, $elem :=.MovieList}}
+          {{if lt $index 3}}
+            <li class="topRank" >
+              {{else}}
+              <li>
+                {{end}} <em>{{$index}}</em>
+                <a href="movie/{{$elem.MovieId}}.html" target="_blank" title="{{$elem.MovieTitle}}"> <font style="font-weight: 900;">{{$elem.MovieTitle}}</font>
+                </a>
+              </li>
+              {{end}}
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div id="portal_block_163" class="block move-span">
+        <div id="portal_block_163_content" class="dxb_bc">
+          <div class="editorChoice box">
+            <h4> <strong>{{i18n .Lang "televition"}}</strong>
+
+            </h4>
+            <ul>
+              {{range $index, $elem :=.TelList}}
+              {{if lt $index 3}}
+            <li class="topRank" >
+              {{else}}
+              <li>
+                {{end}} <em>{{$index}}</em>
+                <a href="movie/{{$elem.MovieId}}.html" target="_blank" title="{{$elem.MovieTitle}}"> <font style="font-weight: 900;">{{$elem.MovieTitle}}</font>
+                </a>
+              </li>
+              {{end}}
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div id="portal_block_163" class="block move-span">
+        <div id="portal_block_163_content" class="dxb_bc">
+          <div class="editorChoice box">
+            <h4>
+              <strong>{{i18n .Lang "video"}}</strong>
+
+            </h4>
+            <ul>
+              {{range $index, $elem :=.VideoList}}
+              {{if lt $index 3}}
+            <li class="topRank" >
+              {{else}}
+              <li>
+                {{end}}
+                <em>{{$index}}</em>
+                <a href="movie/{{$elem.MovieId}}.html" target="_blank" title="{{$elem.MovieTitle}}">
+                  <font style="font-weight: 900;">{{$elem.MovieTitle}}</font>
+                </a>
+              </li>
+              {{end}}
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  {{end}}
