@@ -22,4 +22,7 @@ _testmain.go
 *.exe
 sessions/
 MyMovie.exe~
+<<<<<<< HEAD
 /.project
+=======
+>>>>>>> branch 'master' of https://github.com/guoxf/MyMovie.git
