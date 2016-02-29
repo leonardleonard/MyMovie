@@ -17,8 +17,9 @@ package auth
 import (
 	"encoding/hex"
 	"fmt"
-	"github.com/astaxie/beego/context"
 	"strings"
+
+	"github.com/astaxie/beego/context"
 	// "time"
 
 	"github.com/astaxie/beego"
@@ -119,7 +120,7 @@ func GetLoginRedirect(ctx *context.Context) string {
 func LoginUser(user *models.User, ctx *context.Context, remember bool) {
 	// werid way of beego session regenerate id...
 	ctx.Input.CruSession.SessionRelease(ctx.ResponseWriter)
-	ctx.Input.CruSession = beego.GlobalSessions.SessionRegenerateId(ctx.ResponseWriter, ctx.Request)
+	ctx.Input.CruSession = beego.GlobalSessions.SessionRegenerateID(ctx.ResponseWriter, ctx.Request)
 	ctx.Input.CruSession.Set("auth_user_id", user.Id)
 
 	if remember {
@@ -175,7 +176,7 @@ func LogoutUser(ctx *context.Context) {
 	beego.GlobalSessions.SessionDestroy(ctx.ResponseWriter, ctx.Request)
 }
 
-func GetUserIdFromSession(sess session.SessionStore) int {
+func GetUserIdFromSession(sess session.Store) int {
 	if id, ok := sess.Get("auth_user_id").(int); ok && id > 0 {
 		return id
 	}
@@ -183,7 +184,7 @@ func GetUserIdFromSession(sess session.SessionStore) int {
 }
 
 // get user if key exist in session
-func GetUserFromSession(user *models.User, sess session.SessionStore) bool {
+func GetUserFromSession(user *models.User, sess session.Store) bool {
 	id := GetUserIdFromSession(sess)
 	if id > 0 {
 		u := models.User{Id: id}

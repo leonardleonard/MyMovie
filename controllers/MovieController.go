@@ -13,7 +13,7 @@ type MovieController struct {
 //
 func (this *MovieController) Category() {
 	this.Data["IsHome"] = true
-	this.TplNames = "movie/category.html"
+	this.TplName = "movie/category.html"
 	slug := this.GetString(":type")
 	o := orm.NewOrm()
 	var (
@@ -31,7 +31,7 @@ func (this *MovieController) Category() {
 //
 func (this *MovieController) Index() {
 	this.Data["IsHome"] = true
-	this.TplNames = "index.html"
+	this.TplName = "index.html"
 	o := orm.NewOrm()
 	var (
 		movies    []models.Movie
@@ -61,7 +61,7 @@ func (this *MovieController) Index() {
 func (this *MovieController) GetMovieDetail() {
 	id := this.Ctx.Input.Param(":id")
 
-	this.TplNames = "movie/movieDetail.html"
+	this.TplName = "movie/movieDetail.html"
 	var (
 		movie models.Movie
 		urls  []*models.MovieDownloadUrl

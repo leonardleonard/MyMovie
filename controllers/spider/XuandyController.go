@@ -4,6 +4,7 @@ import (
 	"MyMovie/controllers/base"
 	"MyMovie/models"
 	"MyMovie/modules/myspider"
+
 	"github.com/PuerkitoBio/goquery"
 	"github.com/astaxie/beego/orm"
 	"github.com/hu17889/go_spider/core/common/page"
@@ -36,6 +37,7 @@ type XuandyProcesser struct {
 func NewXuandyProcesser() *XuandyProcesser {
 	return &XuandyProcesser{}
 }
+func (this *XuandyProcesser) Finish() {}
 
 func getXuandyDetailUrl(p *page.Page, query *goquery.Document, urlTag string) {
 	query.Find(`div[id="center"] div[class="postlist"]`).Each(func(i int, s *goquery.Selection) {
@@ -569,6 +571,7 @@ func (this *SynchDownloadUrlProcesser) Process(p *page.Page) {
 		}
 	}
 }
+func (this *SynchDownloadUrlProcesser) Finish() {}
 func (this *SpiderController) SynchDownloadUrl() {
 	sp := spider.NewSpider(&SynchDownloadUrlProcesser{}, "SynchDownloadUrl")
 	sp.SetSleepTime("rand", 50, 200)

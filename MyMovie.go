@@ -31,22 +31,22 @@ func initialize() {
 func main() {
 	beego.SetLogFuncCall(true)
 	initialize()
-	beego.Info("AppPath:", beego.AppPath)
+	beego.Info("AppPath:", beego.AppConfigPath)
 	if setting.IsProMode {
 		beego.Info("Product mode enabled")
 	} else {
 		beego.Info("Develment mode enabled")
 	}
-	beego.Info(beego.AppName, setting.APP_VER, setting.AppUrl)
+	beego.Info(beego.BConfig.AppName, setting.APP_VER, setting.AppUrl)
 
 	if !setting.IsProMode {
 		beego.SetStaticPath("/static_source", "static_source")
-		beego.DirectoryIndex = true
+		beego.BConfig.WebConfig.DirectoryIndex = true
 	}
 	beego.Run()
 }
 
 //func init() {
-//	orm.RegisterDriver("mysql", orm.DR_MySQL)
+//	orm.RegisterDriver("mysql", orm.DRMySQL)
 //	orm.RegisterDataBase("default", "mysql", "swtsoft:swtsoft@/MyMovie?charset=utf8")
 //}

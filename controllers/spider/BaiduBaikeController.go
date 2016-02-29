@@ -7,6 +7,7 @@ import (
 	"MyMovie/controllers/base"
 	"MyMovie/models"
 	"MyMovie/modules/myspider"
+
 	"github.com/PuerkitoBio/goquery"
 	"github.com/astaxie/beego/orm"
 	"github.com/hu17889/go_spider/core/common/page"
@@ -183,6 +184,8 @@ func (this *BaiduBaikeProcesser) getTelDetail(p *page.Page, a *reflect.Value, mo
 	title := query.Find(`div[d="posterCon"] dt.title h1`).First().Text()
 	return isValid(title, *movie)
 }
+
+func (this *BaiduBaikeProcesser) Finish() {}
 
 type BaiduBaikeController struct {
 	base.BaseController

@@ -38,7 +38,7 @@ var (
 
 type DoubanProcesser struct {
 }
-
+func (this *DoubanProcesser)Finish(){}
 func insertMovie(movie *models.Movie) {
 	o := orm.NewOrm()
 	if movie.MovieTitle == "" {
