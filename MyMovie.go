@@ -2,21 +2,19 @@ package main
 
 import (
 	"fmt"
-	
-	
+
+	"MyMovie/controllers/auth"
+	"MyMovie/modules/utils"
 	_ "MyMovie/routers"
 	"MyMovie/setting"
-	"MyMovie/modules/utils"
-	"MyMovie/controllers/auth"
-	
+
 	"github.com/astaxie/beego"
-//	"github.com/astaxie/beego/orm"
+	//	"github.com/astaxie/beego/orm"
 	"github.com/beego/social-auth"
-	
+
 	_ "github.com/go-sql-driver/mysql"
-	
-	
 )
+
 func initialize() {
 	setting.LoadConfig()
 
@@ -33,17 +31,17 @@ func initialize() {
 func main() {
 	beego.SetLogFuncCall(true)
 	initialize()
-	beego.Info("AppPath:",beego.AppPath)
-	if setting.IsProMode{
+	beego.Info("AppPath:", beego.AppPath)
+	if setting.IsProMode {
 		beego.Info("Product mode enabled")
-	}else{
+	} else {
 		beego.Info("Develment mode enabled")
 	}
-	beego.Info(beego.AppName,setting.APP_VER,setting.AppUrl)
-	
-	if !setting.IsProMode{
-		beego.SetStaticPath("/static_source","static_source")
-		beego.DirectoryIndex=true
+	beego.Info(beego.AppName, setting.APP_VER, setting.AppUrl)
+
+	if !setting.IsProMode {
+		beego.SetStaticPath("/static_source", "static_source")
+		beego.DirectoryIndex = true
 	}
 	beego.Run()
 }
